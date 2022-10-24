@@ -1,0 +1,96 @@
+//Linked list-----------end
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node{
+    int data;
+    struct node*next;
+} *head=NULL;
+
+void create(int n)
+{
+    struct node *sec,*temp;
+    head=(struct node*)malloc(sizeof(struct node));
+    int d;
+    printf("enter data: ");
+    scanf("%d",&d);
+    head->data=d;
+    head->next=NULL;
+    temp=head;
+
+    for(int i=2;i<=n;i++){
+        sec=(struct node*)malloc(sizeof(struct node));
+        printf("enter data: ");
+        scanf("%d",&d);
+        sec->data=d;
+        sec->next=NULL;
+        temp->next=sec;
+        temp=sec;
+    }
+}
+
+void delete_pos(int n)
+{
+    // struct node *ptr;
+    // ptr=head;
+
+    // int index, i=0;
+    // printf("Enter index which you want to delete: ");
+    // scanf("%d", &index);
+
+    // while (ptr->next != NULL)
+    // {
+    //     if (i==index-1)
+    //     {
+    //         break;
+    //     }
+    //     ptr=ptr->next;
+    //     i++;
+    // }
+    // // printf("%d ", ptr->data);
+    // struct node *del;
+    // del=ptr->next;
+    // ptr->next=del->next;
+    // free(del);
+
+    struct node*ptr,*del;
+    int index,i=0;
+    printf("enter index after which you want to delete");
+    scanf("%d",&index);
+    while(ptr->next!=NULL)
+    {
+        if(i==index)
+        {
+            break;
+        }
+        i++;
+        ptr=ptr->next;
+    }
+    del=ptr->next;
+    ptr->next=del->next;
+    free(del);
+    }
+
+void dis()
+{
+    struct node *ptr;
+    ptr=head;
+    while (ptr != NULL)
+    {
+        printf("%d ", ptr->data);
+        ptr=ptr->next;
+    }   
+    printf("\n");
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number of terms you want: ");
+    scanf("%d", &n);
+    create(n);
+    dis();
+    delete_pos(n);
+    dis();
+}
