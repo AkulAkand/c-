@@ -1,0 +1,62 @@
+//Linked list-----------beginning
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node{
+    int data;
+    struct node*next;
+}*head=NULL;
+
+void create(int n)
+{
+    struct node *sec,*temp;
+    head=(struct node*)malloc(sizeof(struct node));
+    int d;
+    printf("enter data: ");
+    scanf("%d",&d);
+    head->data=d;
+    head->next=NULL;
+    temp=head;
+
+    for(int i=2;i<=n;i++){
+        sec=(struct node*)malloc(sizeof(struct node));
+        printf("enter data: ");
+        scanf("%d",&d);
+        sec->data=d;
+        sec->next=NULL;
+        temp->next=sec;
+        temp=sec;
+    }
+}
+void delete_begin()
+{
+    // struct node* del;
+    // del=head;
+    // head=head->next;
+    // free(del);
+    struct node* del;
+    del=head;
+    head=head->next;
+    free(del);
+}
+
+void dis()
+{
+    struct node *ptr;
+    ptr=head;
+    while (ptr != NULL)
+    {
+        printf("%d ", ptr->data);
+        ptr=ptr->next;
+    }   
+    printf("\n");
+}
+
+int main()
+{
+    create(5);
+    dis();
+    delete_begin();
+    dis();
+}
